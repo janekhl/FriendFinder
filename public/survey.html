@@ -196,24 +196,26 @@
 
 </br>
 
-    <div class="results">
-        
-            <div class="row">
-              <div class="col-lg-12">
-        
-                <div class="results">
-                  <div class="result-heading">
-                    <h1 class="result-title">Your Last Chance at Happiness is Below!</h4>
-                  </div>
-                  <div class="result-body">
-                      <h2 id= "match-name"></h2>      
-                      <img id="match-photo">  
-                  </div>
-                </div>
-        
-              </div>
+<div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-results" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title">Your Last Chance at Happiness</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+                    <div class="best-match">
+                        <h2 id="match-name"></h2>
+                        <h2 id="match-photo"></h2>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
+      </div>
 
     <footer class="footer">
             <div class="container">
@@ -226,10 +228,10 @@
 
     <script type="text/javascript">
 
-        $(".submit").on("click", function(event) {
+        $("#submit").on("click", function(event) {
             event.preventDefault();
 
-            var newFriendDeetz = {
+            var yourDeetz = {
                 name: $("#name").val().trim(),
                 photo: $("#photo").val().trim(),
                 answers:
@@ -247,7 +249,8 @@
                 ]
             };
 
-            console.log(newFriendDeetz);
+
+            console.log(yourDeetz);
 
             $("#name").val("");
             $("#photo").val("");
