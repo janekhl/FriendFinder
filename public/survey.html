@@ -53,7 +53,7 @@
               <div class = "form-group">
                     <h3><strong>Question 1</strong></h3>
                     <h4>Likes animals.</h4>
-                        <select class="chosen-select" id="q1">
+                        <select class="survey" id="q1">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -66,7 +66,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 2</strong></h3>
                     <h4>Likes cooking and baking.</h4>
-                        <select class="chosen-select" id="q2">
+                        <select class="survey" id="q2">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -79,7 +79,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 3</strong></h3>
                     <h4>Likes sweet things.</h4>
-                        <select class="chosen-select" id="q3">
+                        <select class="survey" id="q3">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -92,7 +92,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 4</strong></h3>
                     <h4>Likes sushi.</h4>
-                        <select class="chosen-select" id="q4">
+                        <select class="survey" id="q4">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -106,7 +106,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 5</strong></h3>
                     <h4>Likes presents.</h4>
-                        <select class="chosen-select" id="q5">
+                        <select class="survey" id="q5">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -120,7 +120,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 6</strong></h3>
                     <h4>Likes adventuring.</h4>
-                        <select class="chosen-select" id="q6">
+                        <select class="survey" id="q6">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -134,7 +134,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 7</strong></h3>
                     <h4>Likes hiking.</h4>
-                        <select class="chosen-select" id="q7">
+                        <select class="survey" id="q7">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -148,7 +148,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 8</strong></h3>
                     <h4>Likes yoga.</h4>
-                        <select class="chosen-select" id="q8">
+                        <select class="survey" id="q8">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -161,7 +161,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 9</strong></h3>
                     <h4>Likes good food.</h4>
-                        <select class="chosen-select" id="q9">
+                        <select class="survey" id="q9">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -174,7 +174,7 @@
                 <div class = "form-group">
                     <h3><strong>Question 10</strong></h3>
                     <h4>Likes binge watching shows.</h4>
-                        <select class="chosen-select" id="q10">
+                        <select class="survey" id="q10">
                         <option value=""></option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -194,6 +194,26 @@
       </div>
     </div>
 
+</br>
+
+    <div class="results">
+        
+            <div class="row">
+              <div class="col-lg-12">
+        
+                <div class="results">
+                  <div class="result-heading">
+                    <h1 class="result-title">Your Last Chance at Happiness is Below!</h4>
+                  </div>
+                  <div class="result-body">
+                      <h2 id= "match-name"></h2>      
+                      <img id="match-photo">  
+                  </div>
+                </div>
+        
+              </div>
+            </div>
+        </div>
 
     <footer class="footer">
             <div class="container">
@@ -204,48 +224,57 @@
 
   </div>
 
+    <script type="text/javascript">
+
+        $(".submit").on("click", function(event) {
+            event.preventDefault();
+
+            var newFriendDeetz = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                answers:
+                [
+                    $("#q1").val(),
+                    $("#q2").val(),
+                    $("#q3").val(),
+                    $("#q4").val(),
+                    $("#q5").val(),
+                    $("#q6").val(),
+                    $("#q7").val(),
+                    $("#q8").val(),
+                    $("#q9").val(),
+                    $("#q10").val()
+                ]
+            };
+
+            console.log(newFriendDeetz);
+
+            $("#name").val("");
+            $("#photo").val("");
+
+            $.post("/api/friends", userDeetz, function(data){
+                $("#match-name").text(data.name);
+                $("#match-photo").attr("src",data.photo);
+
+
+            });
+
+                    $("#q1").val("");
+                    $("#q2").val("");
+                    $("#q3").val("");
+                    $("#q4").val("");
+                    $("#q5").val("");
+                    $("#q6").val("");
+                    $("#q7").val("");
+                    $("#q8").val("");
+                    $("#q9").val("");
+                    $("#q10").val("");
+
+        });
+    
+
+
+
+    </script>
 </body>
 </html>
-
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
-<script type="text/javascript">
-
-    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-
-    $(".submit").on("click", function(event) {
-      event.preventDefault();
-
-      // Here we grab the form elements
-      var newFriendDeetz = {
-        name: $("#name").val().trim(),
-        photo: $("#photo").val().trim(),
-        answers:
-        [
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-          ]
-      };
-
-      console.log(newFriendDeetz);
-
-        $("#name").val("");
-        $("#photo").val("");
-      // This line is the magic. It"s very similar to the standard ajax function we used.
-      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-      // depending on if a tables is available or not.
-
-    });
-
-</script>
