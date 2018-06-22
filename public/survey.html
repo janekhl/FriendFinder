@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Survey Page</title>
 
-  <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -21,11 +20,6 @@
       <hr>
       <h2 class="text-center">So take this survey to lower those chances! </h2>
       <br>
-
-      <!-- <div class="text-center">
-        <a href="/friends"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Friends</button></a>
-        <a href="/"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
-      </div> -->
     </div>
 
     <div class="row">
@@ -251,7 +245,6 @@
 
             $.post(currentURL+ "/api/friends", user, function(data) {
 
-                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
                 $("#match-name").text(data.name);
                 $("#match-photo").attr("src", data.photo);
                 $(".model").modal("toggle");
